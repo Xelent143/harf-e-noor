@@ -18,16 +18,51 @@ const types = {
   ".ico": "image/x-icon"
 };
 
+const pageRoutes = {
+  "/": "/index.html",
+  "/shop": "/shop.html",
+  "/custom": "/custom.html",
+  "/process": "/process.html",
+  "/about": "/about.html",
+  "/contact": "/contact.html",
+  "/gallery": "/gallery.html"
+};
+
+const legacyRoutes = {
+  "/index.html": "/",
+  "/shop.html": "/shop",
+  "/custom.html": "/custom",
+  "/process.html": "/process",
+  "/about.html": "/about",
+  "/contact.html": "/contact",
+  "/gallery.html": "/gallery"
+};
+
+function splitRequestUrl(url) {
+  const parsed = new URL(url || "/", "http://localhost");
+  return {
+    pathname: decodeURIComponent(parsed.pathname),
+    search: parsed.search
+  };
+}
+
 function resolveRequest(urlPath) {
-  const cleanPath = decodeURIComponent(urlPath.split("?")[0]);
-  const normalized = cleanPath === "/" ? "/index.html" : cleanPath;
+  const cleanPath = decodeURIComponent(urlPath);
+  const normalized = pageRoutes[cleanPath] || cleanPath;
   const filePath = path.normalize(path.join(root, normalized));
   if (!filePath.startsWith(root)) return null;
   return filePath;
 }
 
 createServer(async (req, res) => {
-  const filePath = resolveRequest(req.url || "/");
+  const { pathname, search } = splitRequestUrl(req.url || "/");
+  if (legacyRoutes[pathname]) {
+    res.writeHead(301, { Location: `${legacyRoutes[pathname]}${search}` });
+    res.end();
+    return;
+  }
+
+  const filePath = resolveRequest(pathname);
   if (!filePath) {
     res.writeHead(403);
     res.end("Forbidden");
