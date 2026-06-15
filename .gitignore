@@ -1,0 +1,27 @@
+# Local preview and design-review exports
+*.log
+*.tmp
+
+# Root-level generated review screenshots/mockups are not required for the live site.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+!assets/**
+
+# Keep source assets and product images.
+!assets/**/*.png
+!assets/**/*.jpg
+!assets/**/*.jpeg
+!assets/**/*.webp
+!assets/**/*.svg
+!assets/**/*.json
+
+# Product import/contact-sheet sources are local production material, not needed by the live site.
+assets/products/inbox/
+assets/products/*contact-sheet.jpg
+assets/products/*_contact.jpg
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
