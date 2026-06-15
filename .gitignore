@@ -1,6 +1,7 @@
 # Local preview and design-review exports
 *.log
 *.tmp
+node_modules/
 
 # Root-level generated review screenshots/mockups are not required for the live site.
 /*.png
