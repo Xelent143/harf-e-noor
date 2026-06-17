@@ -5802,3 +5802,224 @@ aside::before,
     font-size: clamp(24px, 7vw, 32px);
   }
 }
+
+/* Mobile stability pass */
+@media (max-width: 900px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    padding-inline: 14px;
+    text-align: center;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    gap: 14px;
+    padding: 14px 16px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-text {
+    min-width: 0;
+  }
+
+  .brand-text strong {
+    font-size: clamp(22px, 7vw, 30px);
+  }
+
+  .brand-text small {
+    max-width: 190px;
+    white-space: normal;
+  }
+
+  .nav-toggle {
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    min-height: 48px;
+    color: #fff8ea;
+    border-color: rgba(232, 191, 115, .44);
+    background: rgba(255, 248, 234, .08);
+  }
+
+  .main-nav {
+    z-index: 90;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(31, 25, 17, .98), rgba(12, 10, 7, .98));
+    border-top: 1px solid rgba(224, 176, 92, .28);
+    border-bottom: 1px solid rgba(224, 176, 92, .28);
+    box-shadow: 0 24px 44px rgba(0, 0, 0, .42);
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .main-nav a {
+    color: #fff8ea;
+    padding: 15px 22px;
+    border-top: 1px solid rgba(224, 176, 92, .18);
+    background: rgba(255, 248, 234, .02);
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus-visible {
+    color: #f1bf62;
+    background: rgba(224, 176, 92, .1);
+  }
+
+  .home-wall-hero,
+  .generated-museum-hero,
+  .shop-editorial-hero {
+    min-height: auto;
+    max-height: none;
+  }
+
+  .home-wall-hero {
+    align-items: end;
+    padding: clamp(78px, 18vw, 112px) 22px clamp(44px, 12vw, 72px);
+  }
+
+  .home-wall-copy,
+  .generated-hero-copy,
+  .shop-hero-copy {
+    position: relative;
+    z-index: 2;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .home-wall-copy {
+    display: grid;
+    gap: 18px;
+    padding-top: clamp(58px, 18vw, 96px);
+  }
+
+  .home-wall-copy h1,
+  .generated-hero-copy h1,
+  .shop-hero-copy h1,
+  .page-hero h1 {
+    font-size: clamp(34px, 10.5vw, 54px);
+    line-height: 1.02;
+  }
+
+  .home-wall-copy p:not(.eyebrow),
+  .generated-hero-copy p:not(.eyebrow),
+  .shop-hero-copy p:not(.eyebrow),
+  .page-hero p {
+    font-size: clamp(17px, 5.3vw, 20px);
+    line-height: 1.5;
+  }
+
+  .hero-actions,
+  .home-gallery-page .home-wall-copy .hero-actions {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 390px;
+  }
+
+  .button {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .section,
+  .page-hero,
+  .shop-layout,
+  .order-story,
+  .site-footer {
+    width: min(100% - 24px, 720px);
+    padding-inline: 18px;
+  }
+
+  .home-room-grid,
+  .home-featured-grid,
+  .home-commission-gallery,
+  .home-material-proof,
+  .home-proof-list,
+  .faq-grid,
+  .product-grid,
+  .material-grid,
+  .process-band,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .logo-brand img {
+    width: 32px;
+    height: 48px;
+  }
+
+  .home-wall-hero::before {
+    background-position: 57% center;
+  }
+
+  .home-wall-hero::after {
+    background:
+      linear-gradient(180deg, rgba(5, 4, 3, .28), rgba(5, 4, 3, .76)),
+      linear-gradient(90deg, rgba(5, 4, 3, .82), rgba(5, 4, 3, .38));
+  }
+
+  .shop-editorial-hero,
+  .generated-museum-hero {
+    padding: 34px 18px;
+  }
+
+  .generated-museum-hero::after {
+    background:
+      linear-gradient(180deg, rgba(5, 4, 3, .72), rgba(5, 4, 3, .58) 38%, rgba(5, 4, 3, .88)),
+      linear-gradient(90deg, rgba(5, 4, 3, .88), rgba(5, 4, 3, .46));
+  }
+
+  .generated-hero-copy,
+  .shop-hero-copy {
+    padding: 18px 0;
+    text-shadow: 0 18px 44px rgba(0, 0, 0, .9);
+  }
+
+  .home-wall-copy {
+    padding-top: clamp(44px, 16vw, 74px);
+  }
+
+  .shop-editorial-hero figure,
+  .hero-photo,
+  .generated-atelier-scene,
+  .home-gallery-canvas {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .listed-artwork-card,
+  .product-card,
+  .material-grid article,
+  .faq-grid article,
+  .home-room-card {
+    min-height: auto;
+  }
+
+  .mobile-cta {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+}

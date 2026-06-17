@@ -2,9 +2,12 @@ const navToggle = document.querySelector(".nav-toggle");
 const mainNav = document.querySelector(".main-nav");
 
 if (navToggle && mainNav) {
+  navToggle.setAttribute("aria-expanded", "false");
   navToggle.addEventListener("click", () => {
     mainNav.classList.toggle("open");
-    navToggle.textContent = mainNav.classList.contains("open") ? "Close" : "Menu";
+    const isOpen = mainNav.classList.contains("open");
+    navToggle.textContent = isOpen ? "Close" : "Menu";
+    navToggle.setAttribute("aria-expanded", String(isOpen));
   });
 }
 

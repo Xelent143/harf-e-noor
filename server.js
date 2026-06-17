@@ -73,9 +73,10 @@ createServer(async (req, res) => {
     const stat = await fs.stat(filePath);
     const finalPath = stat.isDirectory() ? path.join(filePath, "index.html") : filePath;
     const ext = path.extname(finalPath).toLowerCase();
+    const shouldRevalidate = ext === ".html" || ext === ".css" || ext === ".js";
     res.writeHead(200, {
       "Content-Type": types[ext] || "application/octet-stream",
-      "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=31536000, immutable"
+      "Cache-Control": shouldRevalidate ? "no-cache" : "public, max-age=31536000, immutable"
     });
     createReadStream(finalPath).pipe(res);
   } catch {
