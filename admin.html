@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Login | Harf-e-Noor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playwrite+AU+NSW:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css?v=20260618-dark-contrast">
+</head>
+<body>
+  <div class="topbar">Admin studio - login to manage Harf-e-Noor products.</div>
+  <header class="site-header">
+    <a class="brand logo-brand" href="/" aria-label="Harf-e-Noor home">
+      <img src="assets/harf-e-noor-inner-logo.png" alt="" width="38" height="58">
+      <span class="brand-text"><strong>Harf-e-Noor</strong><small>Calligraphy &amp; Hand-Painted Art</small></span>
+    </a>
+    <a class="shop-link" href="/" target="_blank" rel="noopener">View website</a>
+  </header>
+  <main class="admin-shell">
+    <section class="login-panel" data-login-panel>
+      <div class="login-card">
+        <div class="admin-brand">
+          <img src="assets/harf-e-noor-inner-logo.png" alt="">
+          <div>
+            <strong>Harf-e-Noor</strong>
+            <small>Calligraphy & Hand-Painted Art</small>
+          </div>
+        </div>
+        <p class="eyebrow">Private studio admin</p>
+        <h1>Login to the website studio.</h1>
+        <form class="login-form" data-login-form>
+          <label>
+            <span>Username</span>
+            <input name="username" autocomplete="username" value="admin" required>
+          </label>
+          <label>
+            <span>Password</span>
+            <input name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Login</button>
+          <p class="form-message" data-login-message></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="admin-login.js"></script>
+</body>
+</html>

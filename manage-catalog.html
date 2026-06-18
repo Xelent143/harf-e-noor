@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Manage Catalog | Harf-e-Noor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playwrite+AU+NSW:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css?v=20260618-dark-contrast">
+</head>
+<body>
+  <div class="topbar">Admin studio - manage Harf-e-Noor products, prices, and availability.</div>
+  <header class="site-header">
+    <a class="brand logo-brand" href="/" aria-label="Harf-e-Noor home">
+      <img src="assets/harf-e-noor-inner-logo.png" alt="" width="38" height="58">
+      <span class="brand-text"><strong>Harf-e-Noor</strong><small>Calligraphy &amp; Hand-Painted Art</small></span>
+    </a>
+    <a class="shop-link" href="/" target="_blank" rel="noopener">View website</a>
+  </header>
+  <main class="admin-shell">
+    <section class="dashboard" data-dashboard>
+      <header class="admin-header">
+        <div>
+          <p class="eyebrow">Manage Catalog</p>
+          <h1>Shop products</h1>
+        </div>
+        <nav>
+          <a href="/shop" target="_blank" rel="noopener">View shop</a>
+          <button type="button" class="static-nav-button" disabled>Add/delete product</button>
+          <button type="button" class="subtle" data-password-toggle>Password</button>
+        </nav>
+      </header>
+
+      <div class="admin-grid">
+        <section class="product-list-panel" aria-label="Products">
+          <div class="panel-head">
+            <h2>Products</h2>
+            <input data-search placeholder="Search products" aria-label="Search products">
+          </div>
+          <div class="product-list" data-product-list></div>
+        </section>
+
+        <section class="editor-panel" aria-label="Product editor">
+          <div class="panel-head">
+            <h2 data-editor-title>Add product</h2>
+            <button type="button" class="danger subtle" data-delete-product hidden>Delete</button>
+          </div>
+
+          <form class="product-form" data-product-form>
+            <input type="hidden" name="originalSlug">
+            <label>
+              <span>Title</span>
+              <input name="title" required placeholder="Artwork title">
+            </label>
+            <label>
+              <span>Slug</span>
+              <input name="slug" placeholder="auto-generated-if-empty">
+            </label>
+            <label>
+              <span>Description</span>
+              <textarea name="desc" rows="4" placeholder="Short product description"></textarea>
+            </label>
+
+            <div class="form-row">
+              <label>
+                <span>Badge</span>
+                <input name="badge" placeholder="Original">
+              </label>
+              <label>
+                <span>Status</span>
+                <select name="status">
+                  <option value="active">Active</option>
+                  <option value="sold">Sold</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                <span>Price</span>
+                <input name="price" placeholder="Leave blank for Ask for price">
+              </label>
+              <label>
+                <span>Tags</span>
+                <input name="tags" placeholder="original mini gift">
+              </label>
+            </div>
+
+            <label>
+              <span>Image path</span>
+              <input name="image" placeholder="assets/products/example.webp">
+            </label>
+
+            <label class="upload-box">
+              <span>Upload new image</span>
+              <input name="upload" type="file" accept="image/png,image/jpeg,image/webp">
+              <small>PNG, JPG, or WebP under 6MB.</small>
+            </label>
+
+            <figure class="preview-card" data-preview-card hidden>
+              <img data-preview-image alt="">
+              <figcaption data-preview-caption></figcaption>
+            </figure>
+
+            <div class="form-actions">
+              <button type="submit">Save product</button>
+              <button type="button" class="subtle" data-reset-form>Clear</button>
+            </div>
+            <p class="form-message" data-product-message></p>
+          </form>
+        </section>
+
+        <section class="settings-panel" data-password-panel hidden aria-label="Password settings">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Security</p>
+              <h2>Change password</h2>
+            </div>
+            <button type="button" class="subtle" data-password-close>Close</button>
+          </div>
+          <form class="password-form" data-password-form>
+            <div class="form-row">
+              <label>
+                <span>Current password</span>
+                <input name="currentPassword" type="password" autocomplete="current-password" required>
+              </label>
+              <label>
+                <span>New password</span>
+                <input name="newPassword" type="password" autocomplete="new-password" minlength="8" required>
+              </label>
+            </div>
+            <label>
+              <span>Confirm new password</span>
+              <input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required>
+            </label>
+            <div class="form-actions">
+              <button type="submit">Update password</button>
+            </div>
+            <p class="form-message" data-password-message></p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="manage-catalog.js"></script>
+</body>
+</html>

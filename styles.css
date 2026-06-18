@@ -35,6 +35,59 @@ body {
   line-height: 1.55;
 }
 
+.admin-session-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 16px;
+  color: #fff8ea;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255, 248, 234, .18);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.admin-session-bar strong {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.admin-session-bar a,
+.admin-session-bar button {
+  border: 1px solid rgba(255, 248, 234, .42);
+  padding: 7px 10px;
+  color: #fff8ea;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.admin-session-bar a:hover,
+.admin-session-bar button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+@media (max-width: 560px) {
+  .admin-session-bar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .admin-session-bar a,
+  .admin-session-bar button {
+    flex: 1 1 140px;
+    text-align: center;
+  }
+}
+
 img {
   max-width: 100%;
 }
@@ -2606,6 +2659,30 @@ body.lightbox-open {
 
 .listed-artwork-card > div:last-child a {
   color: var(--seal);
+}
+
+.listed-artwork-card.is-sold {
+  opacity: .72;
+}
+
+.listed-artwork-card.is-sold .listed-artwork-photo::after {
+  content: "Sold";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #fffaf1;
+  background: rgba(117, 36, 28, .9);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.product-meta span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 1100px) {

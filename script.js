@@ -28,6 +28,44 @@ const escapeHtml = (value = "") =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
 
+async function checkAdminSession() {
+  try {
+    const response = await fetch("/api/admin/session", { credentials: "same-origin" });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function injectAdminBar() {
+  if (!(await checkAdminSession())) return;
+  if (document.querySelector(".admin-session-bar")) return;
+
+  const bar = document.createElement("div");
+  bar.className = "admin-session-bar";
+  bar.innerHTML = `
+    <strong>Admin mode</strong>
+    <a href="/manage-catalog">Manage Catalog</a>
+    <button type="button">Logout</button>
+  `;
+  bar.querySelector("button").addEventListener("click", async () => {
+    await fetch("/api/admin/logout", { method: "POST", credentials: "same-origin" }).catch(() => {});
+    window.location.href = "/admin";
+  });
+  document.body.prepend(bar);
+}
+
+function priceLabel(product) {
+  const price = String(product.price || "").trim();
+  if (!price || price.toLowerCase() === "inquire") return "Ask for price";
+  return price;
+}
+
+function productInquiryUrl(product) {
+  const message = `Assalam o Alaikum, I want details for ${product.title || "this artwork"}.`;
+  return `${whatsappOrderUrl}?text=${encodeURIComponent(message)}`;
+}
+
 function applyProductFilter(filter) {
   document.querySelectorAll(".shop-products .product-card").forEach((product) => {
     const tags = product.dataset.tags || "";
@@ -288,18 +326,23 @@ async function loadProductCatalog() {
   if (!shopGrid) return;
 
   try {
-    const response = await fetch("assets/products/products.json?v=20260615-full-patient");
+    const response = await fetch("/api/products");
     if (!response.ok) return;
     const products = await response.json();
 
     shopGrid.innerHTML = products.map((product) => `
-      <article class="product-card listed-artwork-card" data-tags="${escapeHtml(productTags(product))}">
+      <article class="product-card listed-artwork-card ${product.status === "sold" ? "is-sold" : ""}" data-tags="${escapeHtml(productTags(product))}">
         <figure class="art-mini listed-artwork-photo artwork-preview-trigger" aria-label="${escapeHtml(product.title)} artwork preview" data-artwork-src="${escapeHtml(product.image)}" data-artwork-title="${escapeHtml(product.title)}" data-artwork-caption="${escapeHtml(product.desc)}">
           <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)} handmade calligraphy artwork" width="900" height="1125" loading="lazy">
           <span>Private viewing</span>
         </figure>
+        ${product.badge || product.status === "sold" ? `<p class="badge">${escapeHtml(product.status === "sold" ? "Sold" : product.badge)}</p>` : ""}
         <h3>${escapeHtml(product.title)}</h3>
-        <a class="artwork-inquiry-link" href="${whatsappOrderUrl}">Ask for private viewing</a>
+        ${product.desc ? `<p>${escapeHtml(product.desc)}</p>` : ""}
+        <div class="product-meta">
+          <span>${escapeHtml(priceLabel(product))}</span>
+          <a class="artwork-inquiry-link" href="${escapeHtml(productInquiryUrl(product))}" target="_blank" rel="noopener">Ask</a>
+        </div>
       </article>
     `).join("");
 
@@ -312,4 +355,5 @@ async function loadProductCatalog() {
 }
 
 bindStaticGalleryImages();
+injectAdminBar();
 loadProductCatalog();
