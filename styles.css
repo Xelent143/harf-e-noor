@@ -6090,8 +6090,8 @@ aside::before,
   }
 
   .home-wall-hero {
-    min-height: calc(100svh - 152px);
-    padding: 42vh 18px 34px;
+    min-height: auto;
+    padding: min(34vh, 270px) 18px 30px;
   }
 
   .home-wall-hero::before {
@@ -6103,7 +6103,7 @@ aside::before,
 
   .home-wall-hero::after {
     background:
-      linear-gradient(180deg, rgba(5, 4, 3, .08) 0%, rgba(5, 4, 3, .16) 42%, rgba(5, 4, 3, .84) 74%, rgba(5, 4, 3, .96) 100%),
+      linear-gradient(180deg, rgba(5, 4, 3, .08) 0%, rgba(5, 4, 3, .16) 36%, rgba(5, 4, 3, .84) 66%, rgba(5, 4, 3, .96) 100%),
       linear-gradient(90deg, rgba(5, 4, 3, .78), rgba(5, 4, 3, .2) 52%, rgba(5, 4, 3, .5));
   }
 
@@ -6117,6 +6117,18 @@ aside::before,
 
   .home-gallery-page .home-wall-copy .hero-actions {
     max-width: 330px;
+  }
+
+  .home-material-proof figure {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    max-height: 330px;
+  }
+
+  .home-material-proof img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
   }
 }
 
