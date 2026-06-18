@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /manage-catalog
+
+Sitemap: https://harfenur.com/sitemap.xml
