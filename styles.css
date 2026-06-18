@@ -6023,3 +6023,154 @@ aside::before,
     padding: 14px;
   }
 }
+
+/* Client logo and desktop-like mobile hero pass */
+.logo-brand {
+  gap: 12px;
+}
+
+.logo-brand img {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 50%;
+  mix-blend-mode: normal;
+  filter: none;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .2);
+}
+
+.logo-brand .brand-text {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .logo-brand img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .home-wall-hero {
+    min-height: calc(100svh - 132px);
+    align-items: end;
+    padding: 38vh 18px 38px;
+  }
+
+  .home-wall-copy {
+    max-width: 500px;
+    gap: 14px;
+    padding-top: 0;
+  }
+
+  .home-wall-copy h1 {
+    font-size: clamp(32px, 8.6vw, 44px);
+    line-height: 1.02;
+  }
+
+  .home-wall-copy p:not(.eyebrow) {
+    max-width: 34rem;
+    margin-top: 16px;
+    font-size: clamp(16px, 4.6vw, 18px);
+    line-height: 1.42;
+  }
+
+  .home-wall-copy::before {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    min-height: 104px;
+  }
+
+  .logo-brand img {
+    width: 74px;
+    height: 74px;
+  }
+
+  .home-wall-hero {
+    min-height: calc(100svh - 152px);
+    padding: 42vh 18px 34px;
+  }
+
+  .home-wall-hero::before {
+    background-size: contain;
+    background-position: center 18px;
+    transform: none;
+    filter: saturate(.95) contrast(1.05) brightness(.9);
+  }
+
+  .home-wall-hero::after {
+    background:
+      linear-gradient(180deg, rgba(5, 4, 3, .08) 0%, rgba(5, 4, 3, .16) 42%, rgba(5, 4, 3, .84) 74%, rgba(5, 4, 3, .96) 100%),
+      linear-gradient(90deg, rgba(5, 4, 3, .78), rgba(5, 4, 3, .2) 52%, rgba(5, 4, 3, .5));
+  }
+
+  .home-wall-copy h1 {
+    font-size: clamp(30px, 8.1vw, 38px);
+  }
+
+  .home-wall-copy p:not(.eyebrow) {
+    font-size: 16px;
+  }
+
+  .home-gallery-page .home-wall-copy .hero-actions {
+    max-width: 330px;
+  }
+}
+
+/* Mobile QA pass: keep interactive targets comfortable without changing desktop. */
+@media (max-width: 760px) {
+  .listed-artwork-card > div:last-child,
+  .product-card div {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .listed-artwork-card > div:last-child a,
+  .product-card div a,
+  .artwork-inquiry-link {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 1px solid rgba(232, 191, 115, .34);
+    background: rgba(255, 248, 234, .07);
+    color: #fff8ea;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .artwork-inquiry-link {
+    width: min(100%, 240px);
+    justify-self: center;
+    border-bottom: 1px solid rgba(232, 191, 115, .34);
+  }
+
+  .listed-artwork-card > div:last-child span,
+  .product-card div span {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+  }
+
+  .home-featured-wall .section-head > a,
+  .contact-layout p a,
+  .contact-notes a,
+  .contact-card a,
+  .developer-credit a,
+  .social-link {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding-block: 8px;
+  }
+
+  .contact-card a {
+    line-height: 1.25;
+  }
+}
